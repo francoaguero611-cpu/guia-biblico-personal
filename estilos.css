@@ -1,0 +1,217 @@
+/* «Tu Guía Bíblico Personal» — estética del Mapa de la Historia (pergamino, tinta, oro y rojo).
+   Letra grande a propósito: se lee en el celular. */
+
+:root {
+  --tinta: #2a2118;
+  --rojo:        #a8322a;
+  --oro-suave:  #c9a45a;
+  --pergamino:        #f7efdc;
+  --pergamino-2:      #efe2c3;
+  --papel:        #fffaf0;
+  --burbuja:      #ecdcb5;
+  --texto:        #2a2118;
+  --texto-tenue:  #7a6a55;
+  --borde:        #dccaa0;
+  --oro:        #b8862e;
+  --oro-osc:    #8a6420;
+  --ancho:        44rem;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; height: 100%;
+  background: var(--pergamino); color: var(--texto);
+  font-family: "Source Sans 3", ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+body { display: flex; flex-direction: column; }
+:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; border-radius: 6px; }
+[hidden] { display: none !important; }
+
+/* ── Cabecera: franja de tinta con filete dorado ──────────────────────────── */
+.cabecera {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  padding: .7rem 1rem; position: sticky; top: 0; z-index: 10;
+  background: linear-gradient(180deg, #3a2e22, var(--tinta));
+  color: var(--pergamino);
+  box-shadow: 0 2px 0 #1c150e, 0 4px 14px rgba(42, 33, 24, .25);
+}
+.cabecera::after {               /* filete dorado */
+  content: ""; position: absolute; left: 10px; right: 10px; bottom: 5px;
+  border-bottom: 2px dashed rgba(184, 134, 46, .7);
+}
+.marca { display: flex; align-items: center; gap: .7rem; min-width: 0; }
+.marca-texto { min-width: 0; }
+.marca-texto h1 {
+  margin: 0; font-family: "Fraunces", Georgia, serif; font-size: 1.12rem; font-weight: 700;
+  letter-spacing: .005em; line-height: 1.2;
+}
+.marca-texto p { margin: 0; font-size: .8rem; color: #e9d9b0; white-space: nowrap; }
+.marca-texto p::before {
+  content: ""; display: inline-block; width: .5rem; height: .5rem; border-radius: 50%;
+  background: #4ade80; margin-right: .35rem; vertical-align: .05rem;
+}
+
+.avatar {
+  width: 42px; height: 42px; flex: 0 0 42px; border-radius: 50%;
+  background: var(--oro-suave); color: #fff; overflow: hidden;
+  display: grid; place-items: center; font-weight: 700; font-size: .85rem;
+  box-shadow: 0 0 0 2px var(--oro);
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; grid-area: 1/1; }
+.avatar .iniciales { grid-area: 1/1; }
+.avatar img + .iniciales { display: none; }
+.avatar-grande img { object-position: 50% 18%; }
+.avatar-grande { width: 92px; height: 92px; flex-basis: 92px; font-size: 1.4rem; margin-inline: auto;
+                 box-shadow: 0 0 0 3px var(--oro), 0 8px 24px rgba(42, 33, 24, .25); }
+
+.etiqueta {
+  font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--tinta); background: var(--oro);
+  padding: .16rem .5rem; border-radius: 999px; white-space: nowrap;
+}
+.acciones { display: flex; align-items: center; gap: .6rem; }
+.contador { font-size: .78rem; color: #e9d9b0; white-space: nowrap; }
+.contador.pocas { color: var(--oro); font-weight: 700; }
+.nuevo {
+  font: inherit; font-size: .8rem; font-weight: 600; color: var(--pergamino);
+  background: transparent; border: 1px solid rgba(247, 239, 220, .45); border-radius: 999px;
+  padding: .3rem .8rem; cursor: pointer; white-space: nowrap;
+}
+.nuevo:hover { background: rgba(247, 239, 220, .1); }
+
+/* ── Conversación ─────────────────────────────────────────────────────── */
+.hilo { flex: 1; overflow-y: auto; padding: 1.5rem 1rem 1rem; }
+.hilo > * { max-width: var(--ancho); margin-inline: auto; }
+
+.mensaje { display: flex; margin-bottom: 1.3rem; gap: .6rem; }
+.mensaje.de-usuario { justify-content: flex-end; }
+.mensaje .texto { max-width: 85%; overflow-wrap: anywhere; }
+.mensaje.de-usuario .texto {
+  background: var(--burbuja); padding: .7rem 1rem; border-radius: 1.2rem 1.2rem .3rem 1.2rem;
+}
+.mensaje.de-asistente .texto {
+  max-width: calc(100% - 42px);
+  background: var(--papel); border: 1px solid var(--borde);
+  padding: .8rem 1rem; border-radius: .3rem 1.2rem 1.2rem 1.2rem;
+  box-shadow: 0 1px 2px rgba(42, 33, 24, .06);
+}
+.mensaje.de-asistente::before {          /* mini avatar al lado de cada respuesta */
+  content: ""; flex: 0 0 32px; height: 32px; border-radius: 50%;
+  background: var(--oro-suave) url("guia-icono.jpg") center / cover;
+  box-shadow: 0 0 0 1.5px var(--oro);
+}
+.mensaje .texto > *:first-child { margin-top: 0; }
+.mensaje .texto > *:last-child  { margin-bottom: 0; }
+.mensaje p  { margin: 0 0 .75rem; }
+.mensaje ul, .mensaje ol { margin: 0 0 .75rem; padding-left: 1.35rem; }
+.mensaje li { margin-bottom: .3rem; }
+.mensaje li::marker { color: var(--oro-suave); font-weight: 700; }
+.mensaje strong { color: var(--rojo); }
+.mensaje code {
+  background: var(--pergamino-2); border: 1px solid var(--borde);
+  padding: .05rem .35rem; border-radius: 5px; font-size: .9em;
+}
+.mensaje.es-error .texto {
+  background: #fbf1d8; border: 1px dashed var(--oro); color: #5a2a1a; font-size: .97rem;
+}
+
+.puntitos { display: inline-flex; gap: .3rem; padding: .35rem 0; }
+.puntitos i {
+  width: .5rem; height: .5rem; border-radius: 50%; background: var(--oro-suave);
+  animation: latir 1.3s infinite ease-in-out both;
+}
+.puntitos i:nth-child(2) { animation-delay: .16s; }
+.puntitos i:nth-child(3) { animation-delay: .32s; }
+@keyframes latir { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .puntitos i { animation: none; opacity: .55; } }
+
+/* ── Bienvenida ───────────────────────────────────────────────────────── */
+.bienvenida { text-align: center; padding: 2.2rem 0 1rem; }
+.bienvenida h2 {
+  margin: 1.1rem 0 .4rem; font-family: "Fraunces", Georgia, serif;
+  font-size: 1.55rem; line-height: 1.25; color: var(--tinta);
+}
+.bienvenida .bajada { margin: 0 auto 1.5rem; color: var(--texto-tenue); max-width: 30rem; }
+.sugerencias { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+.sugerencia {                             /* tarjetas con filete */
+  font: inherit; font-size: .95rem; text-align: left; color: var(--texto);
+  background: var(--papel); border: 1px solid var(--borde); border-radius: .9rem;
+  padding: .85rem 1rem; cursor: pointer; position: relative;
+  transition: border-color .12s, transform .12s;
+}
+.sugerencia::before {
+  content: ""; position: absolute; inset: 4px; border: 1.5px dashed rgba(184, 134, 46, .45);
+  border-radius: .65rem; pointer-events: none;
+}
+.sugerencia:hover { border-color: var(--oro); transform: translateY(-1px); }
+
+/* ── Compositor ───────────────────────────────────────────────────────── */
+.pie {
+  border-top: 1px solid var(--borde); background: var(--pergamino-2);
+  padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+}
+.compositor {
+  max-width: var(--ancho); margin: 0 auto .5rem; display: flex; align-items: flex-end;
+  gap: .4rem; border: 1.5px solid var(--borde); border-radius: 1.6rem;
+  padding: .35rem .4rem; background: var(--papel);
+}
+.compositor:focus-within { border-color: var(--oro); }
+#entrada {
+  flex: 1; border: 0; outline: 0; resize: none; background: transparent;
+  font: inherit; color: inherit; padding: .5rem .2rem; max-height: 10rem; line-height: 1.45;
+}
+#entrada::placeholder { color: #9a8a70; }
+.boton-foto {
+  flex: 0 0 auto; width: 42px; height: 42px; border: 0; border-radius: 50%;
+  background: var(--pergamino-2); color: var(--rojo); cursor: pointer;
+  display: grid; place-items: center;
+}
+.boton-foto:hover { background: var(--burbuja); }
+.boton-foto:disabled { opacity: .35; cursor: default; }
+#enviar {
+  flex: 0 0 auto; width: 42px; height: 42px; border: 0; border-radius: 50%;
+  background: var(--oro); color: var(--tinta); cursor: pointer;
+  display: grid; place-items: center; transition: opacity .12s;
+}
+#enviar:disabled { opacity: .35; cursor: default; }
+
+.adjunto { max-width: var(--ancho); margin: 0 auto .5rem; position: relative; width: fit-content; }
+.adjunto img {
+  display: block; max-height: 90px; max-width: 140px; border-radius: .7rem;
+  border: 2px solid var(--oro); object-fit: cover;
+}
+#quitar-foto {
+  position: absolute; top: -9px; right: -9px; width: 28px; height: 28px;
+  border-radius: 50%; border: 0; background: var(--tinta); color: var(--pergamino);
+  font-size: 1.05rem; line-height: 1; cursor: pointer;
+}
+.mensaje .foto-enviada {
+  display: block; max-width: 220px; max-height: 260px; border-radius: .8rem;
+  margin-bottom: .5rem; object-fit: cover;
+}
+.mensaje .foto-nota { font-size: .85rem; color: var(--texto-tenue); margin-bottom: .3rem; }
+
+.aviso {
+  max-width: var(--ancho); margin: 0 auto; text-align: center;
+  font-size: .74rem; line-height: 1.45; color: var(--texto-tenue);
+}
+
+/* ── Celular ──────────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  html, body { font-size: 16px; }
+  .cabecera { padding: .6rem .8rem .75rem; }
+  .etiqueta { display: none; }
+  .marca-texto h1 { font-size: 1.02rem; }
+  .contador { font-size: .72rem; white-space: normal; text-align: right; max-width: 7.5rem; line-height: 1.25; }
+  .sugerencias { grid-template-columns: 1fr; }
+  .bienvenida { padding-top: 1.4rem; }
+  .bienvenida h2 { font-size: 1.32rem; }
+  .avatar-grande { width: 80px; height: 80px; flex-basis: 80px; }
+  .hilo { padding: 1rem .8rem; }
+  .mensaje.de-asistente::before { flex-basis: 26px; height: 26px; }
+  .mensaje.de-asistente .texto { max-width: calc(100% - 34px); }
+  .pie { padding-left: .7rem; padding-right: .7rem; }
+}

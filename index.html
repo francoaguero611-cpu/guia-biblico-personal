@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu Guía Bíblico Personal</title>
+<meta name="description" content="Tu Guía Bíblico Personal: un asistente con inteligencia artificial para leer la Biblia católica con el Mapa de la Historia.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2a2118">
+<meta name="apple-mobile-web-app-title" content="Guía Bíblico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="guia-icono.jpg">
+<link rel="icon" href="guia-icono.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css?v=g1">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="marca">
+    <div class="avatar">
+      <img src="guia-icono.jpg" alt="" onerror="this.remove()">
+      <span class="iniciales">GB</span>
+    </div>
+    <div class="marca-texto">
+      <h1>Tu Guía Bíblico Personal</h1>
+      <p>El Mapa de la Historia · en línea</p>
+    </div>
+    <span class="etiqueta">Asistente IA</span>
+  </div>
+  <div class="acciones">
+    <div class="contador" id="contador" aria-live="polite"></div>
+    <button type="button" class="nuevo" id="nuevo" hidden>Nueva charla</button>
+  </div>
+</header>
+
+<main class="hilo" id="hilo" role="log" aria-live="polite" aria-label="Conversación">
+
+  <section class="bienvenida" id="bienvenida">
+    <div class="avatar avatar-grande" aria-hidden="true">
+      <img src="guia.png" alt="" onerror="this.remove()">
+      <span class="iniciales">GB</span>
+    </div>
+    <h2>¡Hola! Qué alegría que estés acá. Soy tu Guía Bíblico.</h2>
+    <p class="bajada">
+      Con la voz del padre de los videos, te acompaño a leer la Biblia católica, a ubicar cada libro
+      en el Mapa de la Historia y a entender qué pasaba en el mundo en ese momento. Te puedo ayudar a preparar
+      la lectura del domingo, a explicarles a los chicos o a armar un encuentro de catequesis. Escribime
+      tu pregunta o tocá una de estas:
+    </p>
+    <div class="sugerencias">
+      <button class="sugerencia" type="button">¿Qué pasaba en el mundo cuando vivía el profeta Isaías?</button>
+      <button class="sugerencia" type="button">Ayudame a preparar la lectura del domingo para mi grupo de oración.</button>
+      <button class="sugerencia" type="button">¿Cómo le explico la historia de Noé a mi nieto de 8 años?</button>
+      <button class="sugerencia" type="button">¿Qué quieren decir los rótulos en inglés del mapa, como «Anno Domini»?</button>
+    </div>
+  </section>
+
+</main>
+
+<div class="pie">
+  <div class="adjunto" id="adjunto" hidden>
+    <img id="adjunto-img" alt="Foto para enviar">
+    <button type="button" id="quitar-foto" aria-label="Quitar foto">×</button>
+  </div>
+  <form class="compositor" id="compositor">
+    <button type="button" id="foto" class="boton-foto" aria-label="Sacar o adjuntar una foto">
+      <svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true">
+        <path d="M4 8h3l2-2.5h6L17 8h3v11H4z" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linejoin="round"/>
+        <circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.9"/>
+      </svg>
+    </button>
+    <input type="file" id="archivo" accept="image/*" hidden>
+    <textarea id="entrada" rows="1" placeholder="Preguntale a tu Guía…"
+              enterkeyhint="send" autocomplete="off"
+              aria-label="Preguntale a tu Guía"></textarea>
+    <button type="submit" id="enviar" aria-label="Enviar">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M12 20V5M5 12l7-7 7 7" fill="none" stroke="currentColor"
+              stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </form>
+  <p class="aviso">
+    Asistente con inteligencia artificial: puede equivocarse y no reemplaza al sacerdote de tu parroquia
+    ni a la confesión o el acompañamiento espiritual. Tenés 10 mensajes por día.
+  </p>
+</div>
+
+<script src="app.js?v=g1"></script>
+</body>
+</html>
